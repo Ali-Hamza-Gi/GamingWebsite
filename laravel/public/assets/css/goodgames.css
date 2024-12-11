@@ -6880,9 +6880,23 @@ img.rounded {
 .nk-gallery-item-group a:active {
     text-decoration: none;
 }
-
+.extra-gallery{
+    margin-bottom:0 !important;
+    display: flex !important;
+    flex-direction:column !important;
+    justify-content: center !important;
+    align-items:center !important;
+    gap:5px !important;
+    top:50% !important;
+    transform:translateY(-50%) !important;
+}
+.extra-gallery strong {
+    line-height: 2px;
+    margin-top: 20px;
+}
 .nk-gallery-item-box img,
 .nk-gallery-item-group img {
+    border-radius: 10px;
     width: 100%;
     height: auto;
     -webkit-transition: -webkit-transform .15s ease-in-out;
@@ -6937,6 +6951,8 @@ img.rounded {
 
 .nk-gallery-item-box .nk-gallery-item-overlay,
 .nk-gallery-item-group .nk-gallery-item-overlay {
+    height: 100%;
+    border-radius: 10px;
     position: absolute;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -6949,7 +6965,7 @@ img.rounded {
     bottom: 0;
     left: 0;
     color: #fff;
-    background-color: rgba(221, 22, 59, 0.75);
+    background-color: rgb(221 22 59 / 50%);
     opacity: 0;
     -webkit-transition: .2s opacity;
     -o-transition: .2s opacity;
@@ -6966,7 +6982,7 @@ img.rounded {
     line-height: 48px;
     text-align: center;
     border: 4px solid #fff;
-    border-radius: 28px;
+    border-radius: 10px;
     opacity: .85;
     -webkit-transition: .35s transform ease;
     -o-transition: .35s transform ease;

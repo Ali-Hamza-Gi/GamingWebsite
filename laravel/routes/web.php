@@ -1,12 +1,13 @@
 <?php
 
-use App\Models\Game;
-use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomePageController;
 
-Route::get('/', [HomePageController::class, 'index']);
+Route::get('/', [HomePageController::class, 'index'])->name('home');
+Route::get('games', [GameController::class, 'games'])->name('games');
+Route::get('get-games', [GameController::class, 'get_games'])->name('get.games');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

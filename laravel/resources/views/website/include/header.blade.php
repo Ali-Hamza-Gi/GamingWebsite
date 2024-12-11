@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="elements.html">
+                    <a href="{{ route('games') }}">
                         Games
                     </a>
                 </li>
