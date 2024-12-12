@@ -3974,7 +3974,7 @@ img.rounded {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .nk-copyright .nk-copyright-left {
@@ -4043,7 +4043,7 @@ img.rounded {
 }
 
 .nk-widget-highlighted .nk-widget-content {
-    padding: 20px 23px;
+    padding: 20px 10px;
     background-color: #232930;
     border: 1px solid #293139;
 }

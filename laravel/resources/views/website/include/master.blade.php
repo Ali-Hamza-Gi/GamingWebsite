@@ -156,7 +156,7 @@
     <div id="nk-nav-mobile" class="nk-navbar nk-navbar-side nk-navbar-right-side nk-navbar-overlay-content d-lg-none">
         <div class="nano">
             <div class="nano-content">
-                <a href="index.html" class="nk-nav-logo">
+                <a href="{{ route('home') }}" class="nk-nav-logo">
                     {{--  <img src="assets/images/logo.png" alt="" width="120">                  --}}
                     <svg width="120" height="" viewBox="0 0 370.20472440944883 98.92991764809778"
                         class="looka-1j8o68f">

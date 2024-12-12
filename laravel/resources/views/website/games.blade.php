@@ -1,13 +1,13 @@
 @extends('website.include.master')
 @section('title')
-    Home
+    Games
 @endsection
 @section('content')
     <div class="container">
         <div class="row vertical-gap">
-            <div class="col-lg-12">
+            <div class="col-lg-9">
                 <!-- START: Latest Games -->
-                <h2 class="nk-decorated-h-2 h3"><span><span class="text-main-1">Latest</span> Pictures</span></h2>
+                <h2 class="nk-decorated-h-2 h3"><span><span class="text-main-1">Latest</span> Games</span></h2>
                 <div class="nk-gap"></div>
                 <div class="container mt-4">
                     <div class="nk-popup-gallery">
@@ -19,7 +19,7 @@
                 </div>
                 <!-- END: Latest Pictures -->
             </div>
-            {{--  <div class="col-lg-4">
+            <div class="col-lg-3">
                     <!-- START: Sidebar
 
                     Additional Classes:
@@ -41,38 +41,20 @@
                     <div class="nk-widget nk-widget-highlighted">
                         <h4 class="nk-widget-title"><span><span class="text-main-1">Most</span> Popular</span></h4>
                         <div class="nk-widget-content">
-                            <div class="nk-widget-post">
-                                <a href="store-product.html" class="nk-post-image">
-                                    <img src="assets/images/product-1-xs.jpg" alt="So saying he unbuckled">
-                                </a>
-                                <h3 class="nk-post-title"><a href="store-product.html">So saying he unbuckled</a></h3>
-                                <div class="nk-product-rating" data-rating="4"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far fa-star"></i></div>
-                                <div class="nk-product-price">€ 23.00</div>
-                            </div>
-
-                            <div class="nk-widget-post">
-                                <a href="store-product.html" class="nk-post-image">
-                                    <img src="assets/images/product-2-xs.jpg" alt="However, I have reason">
-                                </a>
-                                <h3 class="nk-post-title"><a href="store-product.html">However, I have reason</a></h3>
-                                <div class="nk-product-rating" data-rating="2.5"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fas fa-star-half"></i> <i class="far fa-star"></i> <i class="far fa-star"></i></div>
-                                <div class="nk-product-price">€ 32.00</div>
-                            </div>
-
-                            <div class="nk-widget-post">
-                                <a href="store-product.html" class="nk-post-image">
-                                    <img src="assets/images/product-3-xs.jpg" alt="It was some time before">
-                                </a>
-                                <h3 class="nk-post-title"><a href="store-product.html">It was some time before</a></h3>
-                                <div class="nk-product-rating" data-rating="5"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                                <div class="nk-product-price">€ 14.00</div>
-                            </div>
-
+                            @foreach ($games as $game)
+                                <div class="nk-widget-post">
+                                    <a href="{{ $game->slug }}" class="nk-post-image">
+                                        <img src="{{ $game->thumb2 }}" alt="So saying he unbuckled">
+                                    </a>
+                                    <h3 class="nk-post-title"><a href="{{ $game->slug }}">{{ $game->name }}</a></h3>
+                                    <div class="nk-product-rating"> {{ $game->category }} </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </aside>
                 <!-- END: Sidebar -->
-            </div>  --}}
+            </div>
         </div>
     </div>
 @endsection
@@ -80,7 +62,7 @@
 @section('script')
 <script>
     let offset = 0;
-    const limit = 8; // Number of items to load per request
+    const limit = 12; // Number of items to load per request
     let isLoading = false;
 
     function fetchGalleryItems() {
@@ -133,7 +115,7 @@
 
     // Infinite scroll
     $(window).on('scroll', function () {
-        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 170) {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 400) {
             fetchGalleryItems();
         }
     });
