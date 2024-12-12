@@ -15,7 +15,7 @@
                     <p class="text-white">
                         {{ $game->description }}
                     </p>
-                    <a href="#" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Play Game</a>
+                    <a href="{{ route('games.slug',$game->slug) }}" class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-hover-color-main-1">Play Game</a>
                 </div>
             </div>
         @endforeach
@@ -185,26 +185,23 @@
             <div class="nano">
                 <div class="nano-content">
                     @foreach ($latestGames as $key => $game)
-                        <div class="nk-news-box-item">
-                            <div class="nk-news-box-item">
-                                <div class="nk-news-box-item-img">
-                                    <img src="{{ $game->thumb2 }}" alt="{{ $game->name }}" />
-                                </div>
-                                <img src="{{ $game->thumb8 }}" alt="{{ $game->name }}" class="nk-news-box-item-full-img" />
-                                <h3 class="nk-news-box-item-title">{{ $game->name }}</h3>
-                                <span class="nk-news-box-item-categories">
-                                <span class="bg-main-2">{{ $game->category }}</span>
-                                </span>
-                                <div class="nk-news-box-item-text">
-                                    <p>
-                                        {{ $game->description }}
-                                    </p>
-                                </div>
-                                <a href="#" class="nk-news-box-item-url">Play Game</a>
-                                <div class="nk-news-box-item-date"><span class="fa fa-list-alt"></span> {{ $game->category }}</div>
-                            </div>
+                    <div class="nk-news-box-item {{ $key === 0 ? 'nk-news-box-item-active' : '' }}" data-key="{{ $key }}">
+                        <div class="nk-news-box-item-img">
+                            <img src="{{ $game->thumb2 }}" alt="{{ $game->name }}" />
                         </div>
-                    @endforeach
+                        <img src="{{ $game->thumb8 }}" alt="{{ $game->name }}" class="nk-news-box-item-full-img" />
+                        <h3 class="nk-news-box-item-title">{{ $game->name }}</h3>
+                        <span class="nk-news-box-item-categories">
+                            <span class="bg-main-2">{{ $game->category }}</span>
+                        </span>
+                        <div class="nk-news-box-item-text">
+                            <p>{{ $game->description }}</p>
+                        </div>
+                        <a href="{{ route('games.slug', $game->slug) }}" class="nk-news-box-item-url">Play Game</a>
+                        <div class="nk-news-box-item-date"><span class="fa fa-list-alt"></span> {{ $game->category }}</div>
+                    </div>
+                @endforeach
+
                 </div>
             </div>
         </div>
@@ -224,7 +221,7 @@
                             {{ $latestGames[0]->description }}
                         </p>
                     </div>
-                    <a href="#" class="nk-news-box-item-more">Play Game</a>
+                    <a href="{{ route('games.slug',$latestGames[0]->slug) }}" class="nk-news-box-item-more">Play Game</a>
                     <div class="nk-news-box-item-date"><span class="fa fa-list-alt"></span> {{ $latestGames[0]->category }}</div>
                 </div>
             </div>
@@ -237,14 +234,14 @@
                 <div class="col-md-6 col-lg-3">
                     <!-- START: Post -->
                     <div class="nk-blog-post">
-                        <a href="#" class="nk-post-img">
+                        <a href="{{ route('games.slug',$game->slug) }}" class="nk-post-img">
                             <img src="{{ $game->thumb2 }}" alt="{{ $game->name }}" onerror="this.src='{{ $game->thumb4 }}'" />
                             <span class="nk-post-categories">
                             <span class="bg-main-5">{{ $game->category }}</span>
                             </span>
                         </a>
                         <div class="nk-gap"></div>
-                        <h2 class="nk-post-title text-center h4"><a href="#">{{ $game->name }}</a></h2>
+                        <h2 class="nk-post-title text-center h4"><a href="{{ route('games.slug',$game->slug) }}">{{ $game->name }}</a></h2>
                         <div class="nk-post-text">
                             <p>
                                 {{ Str::limit($game->description, 80, '...') }}
