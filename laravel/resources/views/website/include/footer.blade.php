@@ -7,7 +7,7 @@
                 <div class="nk-widget">
                     <h4 class="nk-widget-title"><span class="text-main-1">Contact</span> With Us</h4>
                     <div class="nk-widget-content">
-                        <form action="php/ajax-contact-form.php" class="nk-form nk-form-ajax">
+                        <form action="#" class="nk-form nk-form-ajax">
                             <div class="row vertical-gap sm-gap">
                                 <div class="col-md-6">
                                     <input type="email" class="form-control required" name="email" placeholder="Email *">
@@ -36,12 +36,12 @@
     <div class="nk-copyright">
         <div class="container">
             <div class="nk-copyright-left">
-                <a href="{{ route('home') }}">{{ env('APP_NAME') }}</a>
+                <p>&copy; {{ date('Y') }} <a href="{{ route('home') }}">{{ env('APP_NAME') }}</a>. All rights reserved.</p>
             </div>
             <div class="nk-copyright-right">
                 <ul class="list-inline">
-                    <li class="list-inline-item pl-3"><a href="#">Privacy Policy</a></li>
-                    <li class="list-inline-item pl-3"><a href="#">Terms & Conditions</a></li>
+                    <li class="list-inline-item pl-3"><a href="{{ route('privacy.policy') }}">Privacy Policy</a></li>
+                    <li class="list-inline-item pl-3"><a href="{{ route('terms.and.conditions') }}">Terms & Conditions</a></li>
                 </ul>
             </div>
         </div>

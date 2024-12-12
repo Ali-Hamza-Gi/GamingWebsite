@@ -9,7 +9,6 @@ class HomePageController extends Controller
 {
     function index(Request $request)
     {
-
         $games = Game::get();
 
         $sliderGames = $games->random(5);
@@ -18,9 +17,20 @@ class HomePageController extends Controller
 
         return view('website.home', compact('sliderGames', 'latestGames', 'otherGames'));
     }
-    function about_us(Request $request)
+    function about_us()
     {
-
         return view('website.about');
+    }
+    function terms_and_conditions()
+    {
+        return view('website.terms-and-conditions');
+    }
+    function privacy_policy()
+    {
+        return view('website.privacy-policy');
+    }
+    function contact_us()
+    {
+        return view('website.contact-us');
     }
 }

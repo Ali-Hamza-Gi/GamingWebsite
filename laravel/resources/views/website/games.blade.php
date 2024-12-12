@@ -43,10 +43,10 @@
                         <div class="nk-widget-content">
                             @foreach ($games as $game)
                                 <div class="nk-widget-post">
-                                    <a href="{{ $game->slug }}" class="nk-post-image">
+                                    <a href="{{ route('games.slug',$game->slug) }}" class="nk-post-image">
                                         <img src="{{ $game->thumb2 }}" alt="So saying he unbuckled">
                                     </a>
-                                    <h3 class="nk-post-title"><a href="{{ $game->slug }}">{{ $game->name }}</a></h3>
+                                    <h3 class="nk-post-title"><a href="{{ route('games.slug',$game->slug) }}">{{ $game->name }}</a></h3>
                                     <div class="nk-product-rating"> {{ $game->category }} </div>
                                 </div>
                             @endforeach
@@ -72,7 +72,7 @@
         $('#loader').show();
 
         $.ajax({
-            url: "{{ route('get.games') }}", // Replace with your Laravel route
+            url: "{{ route('get.games') }}",
             type: 'GET',
             data: { offset, limit },
             success: function (items) {
@@ -96,10 +96,11 @@
     function renderGalleryItems(items) {
         const container = $('#gallery-container');
         items.forEach(item => {
+            const route = `{{ route('games.slug', ['slug' => '__slug__']) }}`.replace('__slug__', item.slug);
             container.append(`
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="nk-gallery-item-box">
-                        <a href="${item.url}">
+                        <a href="${route}">
                             <div class="nk-gallery-item-overlay extra-gallery">
                                 <span class="ion-play"></span>
                                 <strong>${item.name}</strong>
@@ -112,6 +113,7 @@
             `);
         });
     }
+
 
     // Infinite scroll
     $(window).on('scroll', function () {

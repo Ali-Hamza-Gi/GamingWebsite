@@ -8,8 +8,12 @@ use Illuminate\Http\Request;
 class GameController extends Controller
 {
     function games(){
-        $games = Game::inRandomOrder()->take(3)->get();
+        $games = Game::inRandomOrder()->take(4)->get();
         return view('website.games', compact('games'));
+    }
+    function games_slug($slug){
+        $game = Game::where('slug' , $slug)->firstOrFail();
+        return view('website.game-view', compact('game'));
     }
     function get_games(Request $request)
     {

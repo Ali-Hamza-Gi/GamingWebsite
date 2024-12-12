@@ -15,33 +15,33 @@
             </a>
 
             <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
-
-                <li class="active">
+                <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
                     <a href="{{ route('home') }}">
                         Home
                     </a>
                 </li>
-                <li class="">
+                <li class="{{ request()->routeIs('games') ? 'active' : '' }}">
                     <a href="{{ route('games') }}">
                         Games
                     </a>
                 </li>
-                <li class="">
+                <li class="{{ request()->routeIs('about.us') ? 'active' : '' }}">
                     <a href="{{ route('about.us') }}">
                         About Us
                     </a>
                 </li>
-                <li class="">
+                <li class="{{ request()->routeIs('pricing') ? 'active' : '' }}">
                     <a href="{{ route('pricing') }}">
                         Pricing
                     </a>
                 </li>
-                <li class="">
+                <li class="{{ request()->routeIs('contact.us') ? 'active' : '' }}">
                     <a href="{{ route('contact.us') }}">
                         Contact Us
                     </a>
                 </li>
             </ul>
+
             <ul class="nk-nav nk-nav-right nk-nav-icons">
 
                 <li class="single-icon d-lg-none">
