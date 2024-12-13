@@ -95,7 +95,7 @@
                                 <span class="fa fa-shopping-cart"></span>
                                 <span class="nk-badge">{{ session('cart') ? count(session('cart')) : 0 }}</span>
                             </span>
-                            <div class="nk-cart-dropdown" style="height: 300px;overflow-y: auto;">
+                            <div class="nk-cart-dropdown" style="height:auto; max-height: 300px; overflow-y: auto;">
                                 @if(session('cart') && count(session('cart')) > 0)
                                     @foreach(session('cart') as $item)
                                         <div class="nk-widget-post" style="padding-left: 10px">
@@ -120,7 +120,9 @@
                                         </a>
                                     </div>
                                 @else
-                                    <p class="text-center">Your cart is empty!</p>
+                                    <center>
+                                        <strong class="text-center h5">Your cart is empty!</strong>
+                                    </center>
                                 @endif
                             </div>
                         </li>

@@ -34,29 +34,49 @@
             <div class="nk-blog-fullwidth">
                 <style>
                     .pricing-card {
-                      border: 1px solid #dd163b;
-                      border-radius: 10px;
-                      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                      transition: transform 0.2s;
-                      margin-bottom: 10px;
+                        border: 1px solid #dd163b;
+                        border-radius: 10px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        transition: transform 0.2s;
+                        margin-bottom: 10px;
                     }
+
                     .pricing-card:hover {
-                      transform: scale(1.05);
+                        transform: scale(1.05);
                     }
+
                     .pricing-card h4 {
                         padding-top: 10px;
-                      font-weight: bold;
+                        font-weight: bold;
                     }
+
                     .pricing-card p {
-                      color: #fff;
+                        color: #fff;
                     }
-                    .pricing-card ul {
-                      padding-left: 0;
+
+                    .cart-count {
+                        background-color: #dd163b;
+                        color: #fff;
+                        font-size: 12px;
+                        font-weight: bold;
+                        border-radius: 50%;
+                        width: 20px;
+                        height: 20px;
+                        line-height: 20px;
+                        text-align: center;
+                        top: -8px;
+                        right: -8px;
+                        display: inline-block;
                     }
-                    .pricing-card ul li {
-                      list-style: none;
+
+                    .position-relative {
+                        position: relative;
                     }
-                  </style>
+
+                    .position-absolute {
+                        position: absolute;
+                    }
+                </style>
                 @if (session('success'))
                     <div class="nk-info-box text-success">
                         <div class="nk-info-box-close nk-info-box-close-btn">
@@ -78,12 +98,14 @@
                             <div class="nk-gap"></div>
                             <div class="nk-post-text">
                                 <div class="row">
+                                    {{--  {{ dd(session('cart')) }}  --}}
+
                                     @foreach ($pricingGroup as $groupKey => $pricings)
                                         <div class="col-md-4">
                                             <div class="pricing-card p-4 text-center">
                                                 <h4>{{ ucfirst($groupKey) }} Pricing</h4>
                                                 @foreach ($pricings as $pricing)
-                                                    <form action="{{ route('add.cart')}}" method="POST">
+                                                    <form action="{{ route('add.cart') }}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $pricing->id }}">
                                                         <input type="hidden" name="duration" value="{{ $pricing->duration }}">
@@ -91,8 +113,17 @@
                                                         <input type="hidden" name="price" value="{{ $pricing->price }}">
                                                         <p>
                                                             {{ $pricing->game_quantity }} {{ $pricing->game_quantity == 1 ? 'Game:' : 'Games:' }} ${{ $pricing->price }}
-                                                            <button class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">
+                                                            <button class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1 position-relative">
                                                                 <i class="fa fa-cart-plus"></i>
+                                                                @php
+                                                                    // Find the current pricing in the session data
+                                                                    $currentCart = collect(session('cart', []))->firstWhere('id', $pricing->id);
+                                                                @endphp
+                                                                @if($currentCart && isset($currentCart['quantity']))
+                                                                    <span class="cart-count position-absolute">
+                                                                        {{ $currentCart['quantity'] }}
+                                                                    </span>
+                                                                @endif
                                                             </button>
                                                         </p>
                                                     </form>

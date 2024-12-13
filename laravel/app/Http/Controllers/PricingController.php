@@ -49,6 +49,27 @@ class PricingController extends Controller
         $message = ucfirst($request->duration) . " {$request->game_quantity} " . ($request->game_quantity == 1 ? 'Game' : 'Games') . " for $" . number_format($request->price, 2) . " added to cart!";
         return redirect()->back()->with('success', $message);
     }
+    function remove(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer',
+            'duration' => 'required|string',
+        ]);
+
+        $cart = session()->get('cart', []);
+
+        // Filter out the item to be removed
+        $cart = array_filter($cart, function ($item) use ($request) {
+            return !($item['id'] == $request->id && $item['duration'] == $request->duration);
+        });
+
+        // Reindex the cart array and save it back to the session
+        $cart = array_values($cart);
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', 'Item removed from cart!');
+    }
+
     function checkout()
     {
         return view('website.checkout');

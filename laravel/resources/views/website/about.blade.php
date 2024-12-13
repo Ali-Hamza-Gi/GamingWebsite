@@ -50,7 +50,7 @@
                         <div class="col-12">
                             <div class="nk-gap"></div>
                             <div class="nk-post-text">
-                                <p>
+                                <p style="text-align: justify">
                                     We've started playing games already in childhood. Actually, who hasn't? However, as we grew up, we had less and less time to play games. Buying and installing new games also didn't bring the joy of playing games as we were expecting. The solution was lying right before us, though. The Internet was ubiquitous, and the newly created and available {{ env('APP_NAME') }} engine brought the possibility of creating completely new games which could be played without the need for installation right in the browser. Unfortunately, there was no good worldwide website which would offer these games.
                                     That's why we decided to create one called {{ env('APP_NAME') }}. At that time, we came up with unique video previews along with video tutorials, and we fully adapted everything for the best gaming experience ever. We hope you enjoy your time spent with … {{ env('APP_NAME') }}!
                                 </p>
